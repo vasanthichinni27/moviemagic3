@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MovieMagic | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-text">
+            <h1>Welcome to MovieMagic</h1>
+            <p>Discover, book, and experience the magic of cinema</p>
+            <a href="{{ url_for('booking') }}" class="btn">Book Tickets</a>
+        </div>
+    </section>
+
+    <!-- Genre Filter Bar -->
+    <div class="genre-filters">
+        <span class="genre-chip">All</span>
+        <span class="genre-chip">Action</span>
+        <span class="genre-chip">Comedy</span>
+        <span class="genre-chip">Drama</span>
+        <span class="genre-chip">Horror</span>
+        <span class="genre-chip">Romance</span>
+    </div>
+
+    <!-- Now Showing -->
+    <section class="movie-section">
+        <h2>Now Showing</h2>
+        <div class="movie-grid">
+            {% for movie in movies %}
+            <div class="movie-card">
+                <img src="{{ url_for('static', filename=movie.poster) }}" alt="{{ movie.title }}">
+                <div class="movie-info">
+                    <h3>{{ movie.title }}</h3>
+                    <span class="genre-badge">{{ movie.genre }}</span>
+                    <a href="{{ url_for('booking') }}" class="btn">Book Now</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="movie-section">
+        <h2>Coming Soon</h2>
+        <div class="movie-grid">
+            <div class="movie-card">
+                <img src="{{ url_for('static', filename='posters/upcoming1.jpg') }}" alt="Upcoming Movie">
+                <div class="movie-info">
+                    <h3>Future Flick</h3>
+                    <span class="genre-badge">Sci-Fi</span>
+                    <button class="btn-secondary" disabled>Coming Soon</button>
+                </div>
+            </div>
+            <!-- Add more upcoming cards as needed -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MovieMagic. All rights reserved.</p>
+    </footer>
+</body>
+</html>
